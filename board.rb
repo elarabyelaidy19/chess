@@ -26,3 +26,9 @@ class Board
     self[pos] = piece 
   end 
 
+  def move_piece(start_pos, end_pos) 
+    raise 'start position is empty' if empty?(pos) 
+
+    
+
+
