@@ -33,8 +33,11 @@ class Board
       piece.valid_moves.empty? 
     end  
   end 
-  
-  
+
+  def empty?(pos)
+    self[pos].empty? 
+  end 
+
 
   def in_check?(color) 
     king_pos = find_king(color).pos 
