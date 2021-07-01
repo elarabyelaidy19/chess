@@ -26,6 +26,23 @@ class Board
     self[pos] = piece 
   end 
 
+  def checkmate?(color) 
+    return false unless in_check?(color) 
+
+    pieces.select { |p| p.color == color }.all? do |piece| 
+      piece.valid_moves.empty? 
+    end  
+  end 
+  
+  
+
+  def in_check?(color) 
+    king_pos = find_king(color).pos 
+    pieces.any? do |p| 
+      p.color != color && p.moves.include?(king_pos) 
+    end 
+  end 
+
   def move_piece(turn_color, start_pos, end_pos)
     raise 'start position is empty' if empty?(start_pos)
 
@@ -52,6 +69,10 @@ class Board
 
     nil
   end
+
+  def valid_pos?(pos) 
+    pos.all? { |coord| coord.between?(0, 7) } 
+  end 
 
 
 
