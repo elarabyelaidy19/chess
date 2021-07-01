@@ -46,4 +46,22 @@ class Cursor
     handle_key(key) 
   end 
 
+  private  
+
+  def handle_key(key) 
+    case key 
+    when :ctrl_c 
+      exit 0 
+    when :return, :space 
+      toggle_selected 
+      cursor_pos 
+    when :left, :right, :up, :down 
+      update_pos(MOVES[key]) 
+      nil 
+    else 
+      puts key 
+    end 
+  end 
+
+
 
