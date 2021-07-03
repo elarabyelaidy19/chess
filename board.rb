@@ -87,6 +87,17 @@ class Board
     pos.all? { |coord| coord.between?(0, 7) }
   end 
 
+  private 
+
+  def notify_players 
+    if board.in_check?(current_player) 
+      display.set_check! 
+    else 
+      display.uncheck! 
+    end 
+  end 
+
+
 
 
 
