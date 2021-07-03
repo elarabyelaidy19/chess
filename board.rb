@@ -79,6 +79,10 @@ class Board
     nil 
   end 
 
+  def pieces 
+    @rows.flatten.reject(&:empty) 
+  end  
+
 
   # move without performing checks
   def move_piece!(start_pos, end_pos)
