@@ -89,7 +89,20 @@ class Board
 
   private  
 
-  
+  attr_reader :sentinel 
+
+  def fill_back_row(color) 
+    back_pieces = [ 
+      Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook 
+    ]
+
+    i = color == :white ? 7 : 0 
+    back_pieces.each_with_index do |piece_class, j| 
+      piece_class.new(color, self, [i, j]) 
+    end 
+  end 
+
+
 
 
 
