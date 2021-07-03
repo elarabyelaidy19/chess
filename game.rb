@@ -52,4 +52,5 @@ end
 
 if $PROGRAM_NAME = __FILE__ 
   Game.new.play 
-end  
+end 
+
