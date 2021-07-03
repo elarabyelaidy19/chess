@@ -29,11 +29,13 @@ class Game
       end 
     end 
 
+    display.render 
+    puts "#{current_player} is checkmated." 
 
+    nil 
+  end 
 
-
-
-
+  private 
 
   def notify_players 
     if board.in_check?(current_player) 
