@@ -8,31 +8,32 @@ class Board
     make_starting_grid(fill_board) 
   end 
   
-  def [](pos) 
-    raise "invalid position" unless valid_pos?(pos)
+  def [](pos)
+    raise 'invalid pos' unless valid_pos?(pos)
 
-    row, col = pos 
+    row, col = pos
     @rows[row][col]
-  end 
+  end
 
-  def [](pos, piece) 
-    raise "invalid position" unless valid_pos?(pos)
-    row, col = pos 
-    @row[row][col] = piece 
-  end 
+  def []=(pos, piece)
+    raise 'invalid pos' unless valid_pos?(pos)
+    row, col = pos
+    @rows[row][col] = piece
+  end
 
-  def add_piece(pos, piece) 
-    raise 'position not empty' unless empty?(pos) 
-    self[pos] = piece 
-  end 
+  def add_piece(piece, pos)
+    raise 'position not empty' unless empty?(pos)
 
-  def checkmate?(color) 
-    return false unless in_check?(color) 
+    self[pos] = piece
+  end
 
-    pieces.select { |p| p.color == color }.all? do |piece| 
-      piece.valid_moves.empty? 
-    end  
-  end 
+  def checkmate?(color)
+    return false unless in_check?(color)
+
+    pieces.select { |p| p.color == color }.all? do |piece|
+      piece.valid_moves.empty?
+    end
+  end
 
   def empty?(pos)
     self[pos].empty? 
@@ -80,13 +81,13 @@ class Board
   end 
 
   def pieces 
-    @rows.flatten.reject(&:empty) 
+    @rows.flatten.reject(&:empty?) 
   end  
 
-  def valid_pos?(pos) 
+  def valid_pos?(pos)
     pos.all? { |coord| coord.between?(0, 7) }
-  end 
-
+  end
+  
   private  
 
   attr_reader :sentinel 
