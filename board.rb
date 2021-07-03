@@ -38,6 +38,14 @@ class Board
     self[pos].empty? 
   end 
 
+  def dup 
+    new_board = Board.new(false) 
+    pieces.each do |piece|  
+      piece.class.new(piece.color, new_board, piecepos) 
+    end 
+    new_board
+  end 
+
 
   def in_check?(color) 
     king_pos = find_king(color).pos 
