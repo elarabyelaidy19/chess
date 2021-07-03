@@ -14,6 +14,22 @@ class Game
     @current_player = :white 
   end 
 
+  def play 
+
+    until board.checkmate?(current_player) 
+      begin 
+        start_pos, end_pos = players[current_player].make_move(board) 
+        board.move_piece(current_player, start_pos, end_pos) 
+
+        swap_turn! 
+        notify_players 
+      rescue StandardError => e 
+        @display.notifications[:error] = e.message 
+        retry
+      end 
+    end 
+
+
 
 
 
