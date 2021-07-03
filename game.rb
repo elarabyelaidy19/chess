@@ -44,3 +44,12 @@ class Game
       display.uncheck! 
     end 
   end 
+
+  def swap_turn! 
+    @current_player = current_player == :white ? :black : :white 
+  end 
+end 
+
+if $PROGRAM_NAME = __FILE__ 
+  Game.new.play 
+end  
