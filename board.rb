@@ -110,9 +110,20 @@ class Board
   def find_king(color)
     king_pos = pieces.find { |p| p.color == color && p.is_a?(King) }
     king_pos || (raise 'king not found?')
-  end 
+  end  
 
-  
+  def make_starting_grid(fill_board)
+    @rows = Array.new(8) { Array.new(8, sentinel) }
+    return unless fill_board
+    %i(white black).each do |color|
+      fill_back_row(color)
+      fill_pawns_row(color)
+    end
+  end
+
+end
+
+
 
 
 
