@@ -66,8 +66,19 @@ class Board
       raise 'You cannot move into check'
     end
 
-    move_piece!(start_pos, end_pos)
+    move_piece!(start_pos, end_pos) 
   end
+
+  def move_piece!(start_pos, end_pos) 
+    piece = self[start_pos] 
+    raise 'piece cannot move like that' unless piece.moves.include?(end_pos) 
+
+    self[end_pos] = piece 
+    self[start_pos] = sentinel 
+    piece.pos = end_pos 
+    nil 
+  end 
+
 
   # move without performing checks
   def move_piece!(start_pos, end_pos)
