@@ -107,7 +107,16 @@ class Board
     8.times { |j| Pawn.new(color, self, [i, j]) }
   end  
 
+  def find_king(color)
+    king_pos = pieces.find { |p| p.color == color && p.is_a?(King) }
+    king_pos || (raise 'king not found?')
+  end 
+
   
+
+
+
+
 
 
 
