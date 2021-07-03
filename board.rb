@@ -102,6 +102,13 @@ class Board
     end 
   end 
 
+  def fill_pawns_row(color)
+    i = color == :white ? 6 : 1
+    8.times { |j| Pawn.new(color, self, [i, j]) }
+  end  
+
+  
+
 
 
 
