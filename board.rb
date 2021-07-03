@@ -83,6 +83,12 @@ class Board
     @rows.flatten.reject(&:empty) 
   end  
 
+  def valid_pos?(pos) 
+    pos.all? { |coord| coord.between?(0, 7) }
+  end 
+
+
+
 
   # move without performing checks
   def move_piece!(start_pos, end_pos)
